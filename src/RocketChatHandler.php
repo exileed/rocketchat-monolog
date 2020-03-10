@@ -76,7 +76,7 @@ class RocketChatHandler extends AbstractProcessingHandler
     /**
      * @inheritDoc
      */
-    protected function write(array $record)
+    protected function write(array $record): void
     {
         $level   = $record[ 'level' ] ?? $this->level;
         $content = [

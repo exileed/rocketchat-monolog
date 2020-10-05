@@ -8,6 +8,12 @@ use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Logger;
 use GuzzleHttp\ClientInterface;
 
+/**
+ * Sends notifications through RocketChat Webhooks
+ *
+ * @author Dmitriy Kuts <me@exileed.com>
+ * @see    https://docs.rocket.chat/guides/administrator-guides/integrations
+ */
 class RocketChatHandler extends AbstractProcessingHandler
 {
 
@@ -28,21 +34,28 @@ class RocketChatHandler extends AbstractProcessingHandler
     ];
 
     /**
-     * @var Client;
+     * GuzzleClient
+     *
+     * @var Client
      */
     private $client;
 
     /**
+     * RocketChat Webhook URLs
+     *
      * @var array
      */
     private $webHookUrls;
 
     /**
+     * Disable guzzle exceptions
      * @var bool
      */
     private $disableException;
 
     /**
+     * RocketChat channel (ID)
+     *
      * @var string
      */
     private $channel;
@@ -50,12 +63,12 @@ class RocketChatHandler extends AbstractProcessingHandler
     /**
      * RocketChatHandler constructor.
      *
-     * @param array                $webHookUrls
-     * @param string               $channel
-     * @param bool                 $disableException
-     * @param ClientInterface|null $client
-     * @param int                  $level
-     * @param bool                 $bubble
+     * @param array $webHookUrls RocketChat Webhook URL
+     * @param string $channel RocketChat channel (ID)
+     * @param bool $disableException Disable guzzle exceptions
+     * @param ClientInterface|null $client Guzzle Client
+     * @param int $level The minimum logging level at which this handler will be triggered
+     * @param bool $bubble Whether the messages that are handled can bubble up the stack or not
      */
     public function __construct(
         array $webHookUrls,
@@ -72,6 +85,15 @@ class RocketChatHandler extends AbstractProcessingHandler
         parent::__construct($level, $bubble);
     }
 
+    /**
+     * RocketChat Webhook URLs
+     *
+     * @return array
+     */
+    public function getWebHookUrls(): array
+    {
+        return $this->webHookUrls;
+    }
 
     /**
      * @inheritDoc

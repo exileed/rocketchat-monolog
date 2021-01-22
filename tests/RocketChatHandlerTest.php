@@ -17,7 +17,6 @@ use PHPUnit\Framework\TestCase;
 
 class RocketChatHandlerTest extends TestCase
 {
-
     public function testOkResponse()
     {
         $mock = new MockHandler(

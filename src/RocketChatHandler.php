@@ -16,7 +16,6 @@ use GuzzleHttp\ClientInterface;
  */
 class RocketChatHandler extends AbstractProcessingHandler
 {
-
     /**
      * Colors for a given log level.
      *
